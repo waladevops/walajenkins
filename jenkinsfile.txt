@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                
+                git 'https://github.com/waladevops/walajenkins.git'
+                sh 'mvn clean package' // Example Maven build command
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
